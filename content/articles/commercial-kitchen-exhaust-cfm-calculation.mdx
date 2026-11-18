@@ -1,0 +1,84 @@
+export const meta = {
+  title: "Commercial kitchen exhaust CFM calculation",
+  description:
+    "How to estimate kitchen hood exhaust airflow from hood length and cooking duty, with a worked example, make-up air, duct velocity and static pressure.",
+  date: "2026-11-18",
+  readingMinutes: 7,
+  topic: "Kitchen exhaust",
+  related: [
+    { label: "Commercial kitchen exhaust", href: "/services/commercial-kitchen-exhaust" },
+    { label: "Kitchen exhaust airflow tool", href: "/tools#kitchen" },
+    { label: "Blowers and fans", href: "/products/blowers-and-fans" },
+  ],
+};
+
+The exhaust airflow of a kitchen hood decides almost everything else in the system: the size of the duct, the size of the fan, and how much make-up air the kitchen needs. Get it too low and smoke spills out of the hood. Get it too high and you pay to condition and move air that did not need moving.
+
+This article explains the common way to make a first estimate, and what a proper design adds to it.
+
+## What the airflow has to do
+
+Cooking appliances produce a rising plume of hot air, smoke, steam and grease vapour. The hood has to contain that plume and the exhaust fan has to draw it away fast enough that it does not spill past the hood edges. Three things govern how much air that takes:
+
+- **The cooking duty.** Woks, charbroilers and tandoors produce far stronger plumes than ovens or steamers.
+- **The hood style.** A wall-mounted canopy has the wall on one side to help contain the plume. An island hood is open on all four sides and needs more air.
+- **The hood size.** A longer hood covers more appliances and draws more air.
+
+## Method 1: airflow per linear foot of hood
+
+The most widely used first estimate multiplies the hood length by an airflow rate per linear foot. US model codes publish minimum rates by hood style and appliance duty. The values below are typical of those tables and are what our [kitchen exhaust tool](/tools#kitchen) uses:
+
+| Hood style | Light duty | Medium duty | Heavy duty | Extra-heavy duty |
+| --- | --- | --- | --- | --- |
+| Wall-mounted canopy | 200 | 300 | 400 | 550 |
+| Single island canopy | 400 | 500 | 600 | 700 |
+| Double island canopy (per side) | 250 | 300 | 400 | 550 |
+
+Values in CFM per linear foot of hood.
+
+As a guide to the duty categories: light duty covers ovens, steamers and kettles; medium duty covers ranges, griddles and fryers; heavy duty covers charbroilers and woks; extra-heavy duty covers solid-fuel appliances such as wood or charcoal grills and tandoors. Classify the hood by the heaviest appliance under it.
+
+Local codes, your consultant's specification and any hood manufacturer's listing take precedence over these values.
+
+### Worked example
+
+A restaurant has a 12 ft wall-mounted canopy over a line of ranges and fryers (medium duty).
+
+```
+Exhaust airflow = 12 ft × 300 CFM/ft = 3,600 CFM
+                = 3,600 × 1.699 ≈ 6,116 m³/h
+```
+
+If a charbroiler is later added under the same hood, the hood becomes heavy duty: 12 × 400 = 4,800 CFM. This is why the appliance schedule needs to be fixed before the hood is designed.
+
+## Method 2: capture velocity across the hood opening
+
+An alternative is to multiply the open area of the hood by a capture velocity across it. This method is useful for checking a design, or for hoods that do not fit the standard categories, but the velocity chosen still depends on the duty and hood style. For most commercial kitchens, Method 1 is the practical starting point.
+
+## Make-up air
+
+Every cubic foot of air the hood removes has to be replaced. If it is not planned, the kitchen pulls air through doors, windows and gaps, goes into strong negative pressure, and the hood captures less effectively.
+
+Make-up air is normally sized close to the exhaust volume, with a small difference left so that the kitchen stays slightly negative relative to dining areas and cooking smells do not drift out. How the make-up air is introduced matters as much as how much: high-velocity air blowing across the hood face will disturb the plume and cause spillage. Introduce it at low velocity, away from the hood edge, or through dedicated make-up air outlets.
+
+## From airflow to duct size
+
+Kitchen exhaust duct carries grease, so it is built heavier than ordinary ventilation duct, fully sealed and provided with cleaning access. Model codes such as the IMC and NFPA 96 set a minimum air velocity in grease ducts (500 ft/min in current editions) so that grease is carried to the fan. In practice, designs run well above that minimum to keep the duct compact, while staying low enough to limit noise and pressure loss.
+
+Once the duct size and route are known, the system's static pressure can be estimated: the pressure drop of the hood and its grease filters, the friction loss along the duct, the losses at bends and transitions, and any pollution-control or odour-treatment equipment before discharge.
+
+## Selecting the fan
+
+The exhaust fan is selected for the design airflow at the total static pressure of the system. Kitchen exhaust fans are usually centrifugal blowers, because they develop the pressure needed for longer duct runs and treatment equipment, and their motors can be kept out of the hot, greasy air stream. See [how to select a centrifugal blower](/resources/how-to-select-centrifugal-blower).
+
+## What a full design adds
+
+The hood-length method gives a sound first number. A full design also checks:
+
+- the exact appliance positions and the hood overhang beyond them
+- duct routing, discharge location and any neighbour or authority requirements
+- fire-safety provisions required for the project
+- make-up air treatment, especially for air-conditioned kitchens
+- access for cleaning and a maintenance schedule
+
+Use the [kitchen exhaust tool](/tools#kitchen) for a preliminary figure, then [send us your kitchen layout](/request-a-quote) for a full design.

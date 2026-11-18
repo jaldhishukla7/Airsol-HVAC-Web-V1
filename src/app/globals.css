@@ -1,0 +1,357 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ------------------------------------------------------------------
+   Airsol design tokens
+   Navy / steel / airflow cyan / ice / graphite, plus one safety-orange
+   reserved for primary calls to action. Orange buttons carry navy text
+   (5.85:1). Cyan is decorative or sits on navy; cyan text on light
+   surfaces uses --color-cyan-ink (5.06:1 on white).
+------------------------------------------------------------------- */
+@theme {
+  --color-navy: #0b2545;
+  --color-navy-900: #071a33;
+  --color-navy-800: #0f2e55;
+  --color-steel: #13518a;
+  --color-steel-600: #1a62a5;
+  --color-cyan: #00b4d8;
+  --color-cyan-ink: #0077a0;
+  --color-ice: #e8f6fb;
+  --color-ice-200: #d3edf6;
+  --color-graphite: #1f2933;
+  --color-muted: #5b6b7a;
+  --color-line: #d5dee7;
+  --color-line-dark: #24426a;
+  --color-mist: #a9c1d9;
+  --color-orange: #f77f00;
+  --color-orange-600: #e07000;
+  --color-paper: #ffffff;
+  --color-danger: #b42318;
+  --color-success: #067647;
+
+  --font-display: var(--font-barlow), "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  --shadow-lift: 0 1px 0 rgb(11 37 69 / 0.04), 0 10px 24px -12px rgb(11 37 69 / 0.28);
+
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-spin-med: spin 6s linear infinite;
+  --animate-page-in: page-in 0.35s ease-out both;
+
+  @keyframes airflow-slide {
+    from {
+      transform: translateX(-48px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  /* Movement only, no opacity: content is visible from the first frame,
+     so the transition never delays Largest Contentful Paint. */
+  @keyframes page-in {
+    from {
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-paper font-sans text-graphite antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-navy;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cyan-ink);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-cyan);
+  }
+  ::selection {
+    background: var(--color-cyan);
+    color: var(--color-navy);
+  }
+}
+
+@layer components {
+  /* Blueprint grid: a 24px minor / 120px major drafting grid. */
+  .blueprint {
+    background-image:
+      linear-gradient(rgb(19 81 138 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(19 81 138 / 0.07) 1px, transparent 1px),
+      linear-gradient(rgb(19 81 138 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(19 81 138 / 0.035) 1px, transparent 1px);
+    background-size:
+      120px 120px,
+      120px 120px,
+      24px 24px,
+      24px 24px;
+  }
+  .blueprint-dark {
+    background-color: var(--color-navy);
+    background-image:
+      linear-gradient(rgb(0 180 216 / 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(0 180 216 / 0.09) 1px, transparent 1px),
+      linear-gradient(rgb(0 180 216 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(0 180 216 / 0.04) 1px, transparent 1px);
+    background-size:
+      120px 120px,
+      120px 120px,
+      24px 24px,
+      24px 24px;
+  }
+
+  /* Animated underline for text links. */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.25s ease;
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1.5px;
+  }
+
+  .hover-lift {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-steel);
+  }
+
+  /* Airflow: a dashed strip moved with transform only (compositor-friendly). */
+  .airflow-strip {
+    background: repeating-linear-gradient(90deg, var(--color-cyan) 0 10px, transparent 10px 24px);
+    opacity: 0.85;
+    animation: airflow-slide 0.9s linear infinite;
+    will-change: transform;
+  }
+  .hero-schematic[data-play="false"] .airflow-strip,
+  .hero-schematic[data-play="false"] .animate-spin-med {
+    animation-play-state: paused;
+  }
+  .airflow-line {
+    stroke-dasharray: 10 14;
+  }
+
+  .container-x {
+    @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8;
+  }
+
+  .prose-airsol {
+    @apply prose max-w-none prose-headings:font-display prose-headings:text-navy prose-h2:text-3xl prose-h3:text-2xl prose-a:text-steel prose-strong:text-graphite prose-p:text-graphite prose-li:text-graphite prose-table:text-sm prose-th:text-navy;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hover-lift:hover {
+    transform: none;
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+/* Scroll reveal: CSS scroll-driven animation, no JavaScript. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+    .reveal-group > .reveal:nth-child(4n + 2) {
+      animation-range: entry 4% entry 39%;
+    }
+    .reveal-group > .reveal:nth-child(4n + 3) {
+      animation-range: entry 8% entry 43%;
+    }
+    .reveal-group > .reveal:nth-child(4n + 4) {
+      animation-range: entry 12% entry 47%;
+    }
+  }
+}
+
+/* ---------- Interactive card effects ---------- */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(0 180 216 / 0.13),
+    transparent 45%
+  );
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+.group:hover .cover-flow {
+  opacity: 0.9;
+}
+.cover-flow {
+  transition: opacity 0.4s ease;
+}
+.cover-icon {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .cover-icon {
+  transform: translateY(-4px) scale(1.06);
+}
+.group:hover .card-icon {
+  transform: translateY(-2px) rotate(-6deg);
+}
+.card-icon {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s,
+    color 0.2s;
+}
+
+/* ---------- Client marquee ---------- */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+  }
+  .marquee-track > li[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* ---------- Mega menu panel transition ---------- */
+.mega-panel {
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.2s;
+}
+.mega-panel[data-open="false"] {
+  opacity: 0;
+  transform: translateY(-6px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@keyframes schematic-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+.animate-schematic-in {
+  animation: schematic-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+/* Project cover details */
+.blueprint-lines {
+  background-image:
+    linear-gradient(rgb(0 180 216 / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 180 216 / 0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(80% 80% at 50% 50%, black, transparent);
+}
+@keyframes ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.cover-ring {
+  animation: ring 30s linear infinite;
+}
+.cover-ring-rev {
+  animation: ring 22s linear infinite reverse;
+}
+.group:hover .cover-flow {
+  opacity: 0.95;
+}

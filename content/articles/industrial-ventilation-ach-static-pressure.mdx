@@ -1,0 +1,96 @@
+export const meta = {
+  title: "Industrial ventilation: ACH and static pressure",
+  description:
+    "How air changes per hour turn into airflow, when heat load governs instead, and how static pressure decides whether a fan actually delivers that airflow.",
+  date: "2026-11-18",
+  readingMinutes: 7,
+  topic: "Industrial ventilation",
+  related: [
+    { label: "Industrial ventilation", href: "/services/industrial-ventilation" },
+    { label: "Air changes per hour calculator", href: "/tools#ach" },
+    { label: "Blowers and fans", href: "/products/blowers-and-fans" },
+  ],
+};
+
+Two numbers define most industrial ventilation systems: how much air needs to move, and how much resistance stands in its way. The first is usually expressed in air changes per hour (ACH). The second is static pressure. A system designed with only the first in mind will look right on paper and under-deliver on site.
+
+## Air changes per hour
+
+An air change is one room-volume of air. Ten air changes per hour means a volume of air equal to the room's volume is supplied (or extracted) ten times every hour. It is a convenient way to describe general ventilation, because it scales with the size of the space.
+
+Converting ACH into airflow is straightforward:
+
+```
+CFM = volume (ft³) × ACH ÷ 60
+m³/h = volume (m³) × ACH
+```
+
+### Worked example
+
+A workshop measures 100 ft × 60 ft with a 25 ft eaves height.
+
+```
+Volume = 100 × 60 × 25 = 150,000 ft³
+At 10 ACH: 150,000 × 10 ÷ 60 = 25,000 CFM (≈ 42,475 m³/h)
+```
+
+Our [ACH calculator](/tools#ach) performs the same calculation in feet or metres.
+
+### Choosing the rate
+
+The ACH figure itself has to come from somewhere. It may be set by a building code, a client standard, a consultant's design basis or established practice for the type of space. It is a starting point for general ventilation, not a universal answer, and it can mislead in two common situations.
+
+## When heat governs instead
+
+In factories with furnaces, ovens, compressors or large metal roofs, the airflow needed to carry away heat is often far higher than any reasonable ACH figure. In that case the design is based on the heat load and the temperature rise you can accept between incoming and outgoing air:
+
+```
+CFM = heat load (BTU/h) ÷ (1.08 × temperature rise in °F)
+```
+
+The constant 1.08 applies to standard air. If a process gives off 200,000 BTU/h and a 10 °F rise is acceptable, the ventilation needs about 200,000 ÷ 10.8 ≈ 18,500 CFM. Allow a smaller temperature rise and the airflow climbs.
+
+Ventilation can never cool a space below the outdoor temperature. If outdoor air is already hot, the options are more air movement over people, evaporative cooling with [air washers](/products/air-washers) where the climate is dry enough, or spot cooling of work positions.
+
+## When contaminants govern
+
+Dust and fumes are best captured at the source with local exhaust hoods, not diluted with general ventilation. Diluting a strong source takes enormous airflow and still leaves the worker standing in the plume. See our [dust collection](/products/dust-collection) page for how capture systems are designed.
+
+## Static pressure: the other half of the design
+
+Every component that air passes through resists the flow: louvres, filters, coils, ducts, bends, dampers, hoods and collectors. The sum of these resistances at the design airflow is the system's static pressure, commonly given in pascals (Pa) or inches of water gauge (in. w.g.), where 1 in. w.g. ≈ 249 Pa.
+
+Static pressure matters because a fan's airflow depends on the pressure it works against. Every fan has a curve: as resistance rises, the airflow it delivers falls. The system also has a curve: its resistance rises roughly with the square of the airflow.
+
+```
+Pressure loss ∝ (airflow)²
+```
+
+The fan will operate where its curve meets the system curve. If the system resistance was underestimated, that point slides to a lower airflow than the design, and the space is under-ventilated even though the "right size" fan was installed.
+
+### Where the pressure goes
+
+| Component | What drives its loss |
+| --- | --- |
+| Straight duct | Duct size, length and air velocity |
+| Bends and transitions | Their shape; sharp fittings cost far more than gradual ones |
+| Filters | Filter class and how loaded the filter is |
+| Louvres and grilles | Free area and face velocity |
+| Collectors and hoods | Equipment design and loading |
+
+Two common mistakes: estimating duct loss but forgetting fittings, and using clean-filter pressure drops for a system that will run with loaded filters for most of its life.
+
+### Poor fan connections
+
+Fans are rated with good inlet and outlet conditions. A sharp elbow right at the fan inlet, or a fan discharging straight into a fitting, reduces performance below the catalogue curve. This loss is known as system effect. Give the fan straight duct runs at its inlet and outlet wherever possible.
+
+## Putting it together
+
+1. Decide what governs the airflow: general ventilation (ACH), heat removal or source capture.
+2. Calculate the airflow for that basis.
+3. Lay out the supply and exhaust paths so air sweeps the occupied zone.
+4. Size ducts and estimate the static pressure of every component at the design airflow.
+5. Select a fan that delivers the airflow at that pressure, near its efficient region.
+6. Measure airflow at commissioning and compare it with the design.
+
+If you have a building layout and a description of the processes inside, [send them to us](/request-a-quote) and we will recommend the ventilation basis and equipment.

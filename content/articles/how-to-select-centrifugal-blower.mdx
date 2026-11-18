@@ -1,0 +1,94 @@
+export const meta = {
+  title: "How to select a centrifugal blower",
+  description:
+    "A practical guide to choosing a centrifugal blower: duty point, impeller types, the air stream, fan laws, motor power, drive arrangement and installation.",
+  date: "2026-11-18",
+  readingMinutes: 7,
+  topic: "Fans and blowers",
+  related: [
+    { label: "Blowers and fans", href: "/products/blowers-and-fans" },
+    { label: "Industrial ventilation", href: "/services/industrial-ventilation" },
+    { label: "CFM and CMH converter", href: "/tools#converter" },
+  ],
+};
+
+A centrifugal blower draws air into the centre of a spinning impeller and throws it outward into a scroll-shaped housing, which converts that motion into pressure. That ability to develop pressure is why centrifugal blowers are the usual choice for long duct systems, filters, kitchen exhaust, scrubbers and dust collectors.
+
+Choosing one well comes down to a short sequence of decisions.
+
+## 1. Define the duty point
+
+The duty point is the airflow you need at the static pressure of your system. Both numbers are required. A blower selected on airflow alone may deliver far less once it is connected to the real ductwork.
+
+- **Airflow** comes from the application: an ACH calculation, a heat-load calculation, a kitchen hood, or the capture requirement of an extraction hood. Our [tools](/tools) help with preliminary estimates.
+- **Static pressure** comes from the system: duct friction, fittings, filters, hoods, collectors and discharge. See [industrial ventilation: ACH and static pressure](/resources/industrial-ventilation-ach-static-pressure) for how to estimate it.
+
+Use the pressure the system will see in normal operation, including loaded filters, not only its clean condition.
+
+## 2. Understand the air stream
+
+What the blower handles shapes its construction more than anything else:
+
+| Air stream | What to consider |
+| --- | --- |
+| Clean air | Efficiency and noise are the main concerns |
+| Grease-laden kitchen exhaust | Motor kept out of the air stream, drainage, access for cleaning |
+| Dusty air | Abrasion resistance, impeller that does not trap dust |
+| Warm or hot air | Temperature limits of bearings, motor and materials |
+| Corrosive fumes | Material or coating compatible with the chemistry |
+
+## 3. Choose the impeller type
+
+Centrifugal impellers fall into three broad families:
+
+- **Forward-curved** blades are compact and move relatively large volumes at low to moderate pressure. They are common in packaged air handling equipment. Their power draw rises as resistance falls, so the motor must be sized with care.
+- **Backward-inclined or backward-curved** blades are generally more efficient and have a non-overloading power characteristic: power peaks near the design point rather than climbing if resistance drops. They suit clean or lightly contaminated air at moderate to higher pressures.
+- **Radial** blades are robust and self-cleaning, which suits dusty or material-handling duties, at the cost of efficiency.
+
+## 4. Read the fan curve
+
+Manufacturers publish curves of pressure, power and efficiency against airflow. Select a blower whose duty point falls near its peak efficiency and well within the stable part of the curve. Avoid selections right at the edge of the curve or at maximum speed; they leave no margin for filter loading, future changes or estimating error.
+
+## 5. Use the fan laws to understand speed changes
+
+For a given blower and system, performance changes with speed in a predictable way:
+
+```
+Airflow  ∝ speed
+Pressure ∝ speed²
+Power    ∝ speed³
+```
+
+A 10% increase in speed gives about 10% more airflow, 21% more pressure and 33% more power. This is why small speed increases to "fix" low airflow can overload a motor, and why variable-speed drives save energy when airflow can be reduced.
+
+## 6. Size the motor
+
+The power delivered to the air is the product of airflow and pressure:
+
+```
+Air power (W) = airflow (m³/s) × total pressure (Pa)
+Shaft power   = air power ÷ fan efficiency
+```
+
+Motor size is then chosen above the shaft power with allowance for drive losses and the operating range. For example, 2 m³/s at 1,000 Pa is 2,000 W of air power. At 65% fan efficiency the shaft needs about 3.1 kW, before drive losses and margin.
+
+## 7. Choose the drive arrangement
+
+- **Direct drive**: the impeller sits on the motor shaft. Fewer parts and less maintenance, with speed set by the motor or a variable-frequency drive.
+- **Belt drive**: the motor drives the impeller through pulleys. Speed can be adjusted at commissioning by changing pulleys, and the motor can be placed outside a hot or greasy air stream. Belts need periodic tensioning and replacement.
+
+## 8. Plan the installation
+
+A good selection can be undone by a poor installation. Give the blower straight duct at the inlet and outlet where possible, use flexible connections to isolate vibration, mount it on isolators where it sits on a structure, protect rooftop units from weather, and leave access for maintenance. At commissioning, measure the delivered airflow and pressure and compare them with the duty point.
+
+## Checklist
+
+- Airflow and static pressure defined at the operating condition
+- Air stream characterised: clean, grease, dust, heat or fumes
+- Impeller type matched to the duty
+- Duty point near peak efficiency on the fan curve
+- Motor sized from shaft power with margin
+- Drive arrangement chosen for access and adjustment
+- Installation details planned and commissioning measurements recorded
+
+[Send us your duty point or system layout](/request-a-quote) and we will recommend a blower selection.

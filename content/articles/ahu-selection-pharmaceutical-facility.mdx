@@ -1,0 +1,108 @@
+export const meta = {
+  title: "How to select the right AHU for a pharmaceutical facility",
+  description:
+    "A step-by-step guide to specifying an air handling unit for pharmaceutical cleanrooms: room data, air changes, filtration staging, humidity, pressure cascades and construction.",
+  date: "2026-11-18",
+  readingMinutes: 8,
+  topic: "Air handling units",
+  related: [
+    { label: "Air handling units", href: "/products/air-handling-units" },
+    { label: "Cleanroom HVAC", href: "/services/cleanroom-hvac" },
+    { label: "HEPA filtration", href: "/products/hepa-filtration" },
+  ],
+};
+
+In a pharmaceutical facility the air handling unit is not just comfort equipment. It is one of the systems that keeps product quality under control, and it will be inspected and validated as such. Selecting it well means working through the requirements in a fixed order, because each decision depends on the one before it.
+
+This guide walks through that order. It is general guidance; your project's design basis, your quality team and the regulations that apply to your products always take precedence.
+
+## 1. Start from the room data sheet
+
+Every controlled room should have a room data sheet before anyone talks about AHUs. At a minimum it records:
+
+- the cleanliness classification of the room (for example an ISO 14644-1 class, or an EU GMP grade where that guide applies)
+- temperature and relative humidity limits
+- the pressure the room must hold relative to its neighbours
+- heat gains from people, lighting and process equipment
+- any exhaust points, such as dust extraction or fume hoods
+
+Without this, any AHU selection is a guess. With it, the airflow, coil and filtration requirements can be calculated rather than assumed.
+
+## 2. Work out the supply airflow for each room
+
+Supply airflow in a cleanroom is set by whichever of these is largest:
+
+1. **Air changes for cleanliness.** The classification usually drives a minimum air-change rate, which dilutes and removes particles.
+2. **Airflow for heat removal.** Large process heat loads can need more air than the cleanliness requirement.
+3. **Airflow for pressurisation and exhaust.** Air leaving through exhaust points and leakage to neighbouring rooms has to be made up.
+
+For the air-change route, the arithmetic is simple:
+
+```
+CFM = room volume (ft³) × air changes per hour ÷ 60
+```
+
+A 20 ft × 15 ft × 10 ft room at 30 air changes per hour needs 3,000 ft³ × 30 ÷ 60 = 1,500 CFM, or about 2,550 m³/h. Our [air changes per hour calculator](/tools#ach) does this conversion for you.
+
+Add up the rooms served by the AHU to get its total supply airflow. Group rooms on one AHU only when their classifications, operating hours and conditions are compatible.
+
+## 3. Decide the fresh-air share
+
+Fresh air is needed for occupants, to replace exhausted air and to keep the facility pressurised against the outside. It is also the most expensive air to condition, because it arrives at outdoor temperature and humidity. Many pharmaceutical AHUs therefore recirculate most of the air and introduce only the fresh air the design needs.
+
+There are exceptions. Areas handling potent compounds, solvents or cross-contamination risks may require once-through (100% fresh air) systems. That decision belongs to the process and containment strategy, not the HVAC budget.
+
+## 4. Stage the filtration
+
+Filtration in a pharmaceutical AHU is arranged in stages so that each one protects the next:
+
+| Stage | Typical location | Purpose |
+| --- | --- | --- |
+| Pre-filter | AHU inlet | Captures coarse dust, protects the coil |
+| Fine filter | After the coil or fan | Captures finer particles, protects the HEPA |
+| HEPA | Room terminal (or in the AHU) | Final filtration to the room's classification |
+
+The exact filter classes come from your design basis. What matters for the AHU is that the fan is selected for the **dirty-filter** pressure drop of every stage, not the clean condition, so that airflow holds up as filters load. Differential pressure gauges across each stage let the maintenance team see when a change is due.
+
+## 5. Size the coil for humidity, not only temperature
+
+Many pharmaceutical products and processes are sensitive to humidity, and Indian monsoon conditions put a heavy moisture load on fresh air. The cooling coil must remove that moisture (latent load) as well as cool the air (sensible load).
+
+Check the coil selection for:
+
+- leaving air dew point low enough to meet the room humidity limit
+- face velocity low enough that condensate is not carried off the coil
+- a drain pan that drains fully and is accessible for cleaning
+
+Where very low humidity is required, a cooling coil alone may not be enough and a desiccant dehumidifier may be added upstream. Reheat after the coil is often needed to bring the dry air back to room temperature.
+
+## 6. Plan the pressure cascade
+
+Pressure differences between rooms keep contamination moving from cleaner to less clean areas (or, for containment, the reverse). Guidelines commonly call for differentials in the range of 10 to 15 Pa between adjacent rooms of different classes, but your design basis sets the actual values.
+
+The AHU does not create these pressures on its own. They come from balancing supply, return and exhaust in each room. What the AHU must provide is stable total airflow, so that once dampers are set, room pressures stay put. This is another reason to select the fan for the dirty-filter condition and, where appropriate, to use variable-speed control that holds airflow constant as filters load.
+
+## 7. Select the fan
+
+With total airflow and total pressure (internal losses of filters and coils plus the external static pressure of the ductwork) known, select a fan that runs near its efficient region at that duty. Avoid fans that only just meet the duty at full speed: they leave no margin for filter loading or later changes.
+
+## 8. Specify construction for cleanability
+
+Pharmaceutical AHUs are usually double-skin construction with smooth internal surfaces that can be wiped down, minimal internal ledges where dust can settle, and inspection doors at every filter, coil and fan section. Casing air leakage and thermal performance are commonly specified against recognised AHU standards; state the classes you need in the specification so that tenders are comparable.
+
+## 9. Document for validation
+
+Finally, plan for the paperwork. A general arrangement drawing, component data, factory checks, and the commissioning record of airflow, pressures and room conditions all feed into qualification. Agree early who provides each document.
+
+## Summary checklist
+
+- Room data sheets complete for every room
+- Supply airflow per room from air changes, heat and pressurisation
+- Fresh-air share decided by process and containment needs
+- Filtration staged, fan selected at dirty-filter pressure drop
+- Coil checked for latent load, face velocity and drainage
+- Pressure cascade defined; airflow control strategy agreed
+- Construction and access specified for cleaning
+- Documentation responsibilities agreed
+
+If you have room data sheets ready, [send them with a quote request](/request-a-quote) and our engineering team will prepare an AHU selection for review.
