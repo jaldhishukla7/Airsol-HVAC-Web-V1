@@ -18,7 +18,7 @@ export default function ResourcesPage() {
   return (
     <>
       <PageHeader
-        crumbs={[{ label: "Resources", href: "/resources" }]}
+        crumbs={[{ label: "Blogs", href: "/blogs" }]}
         title="Engineering notes"
         summary="Practical explanations of how HVAC systems are sized and selected, written by our engineering team."
       />

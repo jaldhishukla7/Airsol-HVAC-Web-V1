@@ -28,7 +28,7 @@ export default function ContactPage() {
         <Button asChild size="lg">
           <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
             <MessageCircle aria-hidden strokeWidth={1.5} />
-            WhatsApp us<span className="sr-only"> (opens in a new tab)</span>
+            WhatsApp Us<span className="sr-only"> (opens in a new tab)</span>
           </a>
         </Button>
       </PageHeader>
@@ -45,10 +45,12 @@ export default function ContactPage() {
               Tell us what you need. If you have drawings or specifications, mention them and we will ask for them by
               email.
             </p>
-            <p className="mt-6 flex items-center gap-2 text-sm text-muted">
-              <Clock className="size-4 text-steel" strokeWidth={1.5} aria-hidden />
-              {SITE.hours.value}
-            </p>
+            <div className="mt-6 flex items-start gap-2 text-sm text-muted">
+              <Clock className="mt-1 size-4 shrink-0 text-steel" strokeWidth={1.5} aria-hidden />
+              <p className="whitespace-pre-line">
+                {SITE.hours.value.replace(". Sunday", ".\nSunday")}
+              </p>
+            </div>
           </div>
           <div className="relative rounded-xl border border-line bg-white p-5 sm:p-8">
             <LazyQuoteForm defaultProjectType="other" />

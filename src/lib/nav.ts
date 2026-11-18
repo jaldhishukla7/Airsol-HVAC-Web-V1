@@ -16,7 +16,7 @@ export const MAIN_NAV: NavItem[] = [
         ...PRODUCTS.map((p) => ({ label: p.short, href: `/products/${p.slug}`, icon: p.icon, description: p.summary })),
         ...PRODUCT_EXTRAS.map((p) => ({ label: p.name, href: p.href, icon: p.icon, description: p.summary })),
       ],
-      footer: { label: "All products", href: "/products" },
+      footer: { label: "All Products", href: "/products" },
     },
   },
   {
@@ -31,7 +31,7 @@ export const MAIN_NAV: NavItem[] = [
   { label: "Industries", href: "/industries" },
   { label: "Projects", href: "/projects" },
   { label: "Tools", href: "/tools" },
-  { label: "Resources", href: "/resources" },
+  { label: "Blogs", href: "/blogs" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -47,7 +47,7 @@ export const FOOTER_NAV: { heading: string; links: NavLeaf[] }[] = [
       { label: "Projects", href: "/projects" },
       { label: "International", href: "/international" },
       { label: "Engineering tools", href: "/tools" },
-      { label: "Resources", href: "/resources" },
+      { label: "Blogs", href: "/blogs" },
       { label: "Contact", href: "/contact" },
       { label: "Request a quote", href: "/request-a-quote" },
     ],

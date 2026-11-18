@@ -44,17 +44,17 @@ export function FloatingContact() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.97 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-64 origin-bottom-right overflow-hidden rounded-xl border border-line bg-white shadow-2xl"
+            className="w-64 origin-bottom-right overflow-hidden rounded-xl border border-line bg-white shadow-2xl dark:border-line-dark dark:bg-navy-900"
           >
             {SITE.phones.map((p) => (
-              <li key={p.tel} className="border-b border-line last:border-0">
-                <a href={`tel:${p.tel}`} className="flex items-center gap-3 px-4 py-3 hover:bg-ice">
-                  <span className="grid size-9 place-items-center rounded-full bg-navy text-cyan">
+              <li key={p.tel} className="border-b border-line last:border-0 dark:border-line-dark">
+                <a href={`tel:${p.tel}`} className="flex items-center gap-3 px-4 py-3 hover:bg-ice dark:hover:bg-navy-800">
+                  <span className="grid size-9 place-items-center rounded-full bg-navy text-cyan dark:bg-navy-800 dark:text-cyan">
                     <Phone className="size-4" strokeWidth={1.5} aria-hidden />
                   </span>
                   <span>
-                    <span className="block font-semibold text-navy">{p.display}</span>
-                    <span className="block text-[13px] text-muted">{p.name}</span>
+                    <span className="block font-semibold text-navy dark:text-white">{p.display}</span>
+                    <span className="block text-[13px] text-muted dark:text-mist">{p.name}</span>
                   </span>
                 </a>
               </li>
@@ -64,12 +64,12 @@ export function FloatingContact() {
                 href={whatsappUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-3 hover:bg-ice"
+                className="flex items-center gap-3 px-4 py-3 hover:bg-ice dark:hover:bg-navy-800"
               >
                 <span className="grid size-9 place-items-center rounded-full bg-[#1f7a4c] text-white">
                   <MessageCircle className="size-4" strokeWidth={1.5} aria-hidden />
                 </span>
-                <span className="font-semibold text-navy">
+                <span className="font-semibold text-navy dark:text-white">
                   WhatsApp {SITE.phone.display}
                   <span className="sr-only"> (opens in a new tab)</span>
                 </span>

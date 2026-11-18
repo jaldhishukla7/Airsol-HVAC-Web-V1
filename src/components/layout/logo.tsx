@@ -12,7 +12,7 @@ export function Logo({ className, plate = false }: { className?: string; plate?:
     <Link
       href="/"
       aria-label={`${SITE.name} home`}
-      className={cn("inline-flex shrink-0 items-center", plate && "rounded-md bg-white px-3 py-2")}
+      className={cn("inline-flex shrink-0 items-center transition-all", plate && "rounded-md bg-white px-3 py-2")}
     >
       <Image
         src="/images/airsol-logo.webp"

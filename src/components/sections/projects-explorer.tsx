@@ -12,7 +12,7 @@ export function ProjectsExplorer({ projects, sectors }: { projects: Project[]; s
   const reduce = useReducedMotion();
   const shown = filter === "all" ? projects : projects.filter((p) => p.sector === filter);
   const chips = [
-    { id: "all", label: "All projects", count: projects.length },
+    { id: "all", label: "All Projects", count: projects.length },
     ...sectors.map((s) => ({ id: s.id, label: s.label, count: projects.filter((p) => p.sector === s.id).length })),
   ];
 

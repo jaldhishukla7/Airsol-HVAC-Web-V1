@@ -16,17 +16,17 @@ export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps<"/resources/[slug]">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/blogs/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const a = getArticle(slug);
   if (!a) return {};
-  const base = pageMetadata({ title: `${a.title} | Airsol`, description: a.description, path: `/resources/${a.slug}` });
+  const base = pageMetadata({ title: `${a.title} | Airsol`, description: a.description, path: `/blogs/${a.slug}` });
   return { ...base, openGraph: { ...base.openGraph, type: "article", publishedTime: a.date } };
 }
 
 const dateFmt = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric" });
 
-export default async function ArticlePage({ params }: PageProps<"/resources/[slug]">) {
+export default async function ArticlePage({ params }: PageProps<"/blogs/[slug]">) {
   const { slug } = await params;
   const a = getArticle(slug);
   if (!a) notFound();
@@ -35,8 +35,8 @@ export default async function ArticlePage({ params }: PageProps<"/resources/[slu
     <>
       <PageHeader
         crumbs={[
-          { label: "Resources", href: "/resources" },
-          { label: a.title, href: `/resources/${a.slug}` },
+          { label: "Blogs", href: "/blogs" },
+          { label: a.title, href: `/blogs/${a.slug}` },
         ]}
         title={a.title}
         summary={a.description}

@@ -79,7 +79,7 @@ export const SERVICES: DetailPage[] = [
     ],
     related: [
       { label: "Tool: kitchen exhaust airflow estimate", href: "/tools#kitchen" },
-      { label: "Article: commercial kitchen exhaust CFM calculation", href: "/resources/commercial-kitchen-exhaust-cfm-calculation" },
+      { label: "Article: commercial kitchen exhaust CFM calculation", href: "/blogs/commercial-kitchen-exhaust-cfm-calculation" },
       { label: "Hotels and restaurants", href: "/industries/hotels-restaurants" },
       { label: "Blowers and fans", href: "/products/blowers-and-fans" },
     ],
@@ -157,7 +157,7 @@ export const SERVICES: DetailPage[] = [
       { label: "HEPA filtration", href: "/products/hepa-filtration" },
       { label: "Air handling units", href: "/products/air-handling-units" },
       { label: "Pharmaceutical and healthcare", href: "/industries/pharmaceutical-healthcare" },
-      { label: "Article: selecting an AHU for a pharmaceutical facility", href: "/resources/ahu-selection-pharmaceutical-facility" },
+      { label: "Article: selecting an AHU for a pharmaceutical facility", href: "/blogs/ahu-selection-pharmaceutical-facility" },
     ],
   },
   {
@@ -233,7 +233,7 @@ export const SERVICES: DetailPage[] = [
       { label: "Blowers and fans", href: "/products/blowers-and-fans" },
       { label: "Air washers and TFA units", href: "/products/air-washers" },
       { label: "Tool: air changes per hour", href: "/tools#ach" },
-      { label: "Article: industrial ventilation, ACH and static pressure", href: "/resources/industrial-ventilation-ach-static-pressure" },
+      { label: "Article: industrial ventilation, ACH and static pressure", href: "/blogs/industrial-ventilation-ach-static-pressure" },
     ],
   },
   {

@@ -1,6 +1,8 @@
 import { Breadcrumbs, type Crumb } from "@/components/layout/breadcrumbs";
 import { HvacIcon, type IconName } from "@/components/icons/hvac-icons";
 import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
+
 
 /** Navy page header used on every inner page: breadcrumbs, H1 and a short summary. */
 export function PageHeader({
@@ -12,10 +14,10 @@ export function PageHeader({
   className,
 }: {
   crumbs: Crumb[];
-  title: string;
+  title: ReactNode;
   summary?: string;
   icon?: IconName;
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
 }) {
   return (
@@ -63,10 +65,12 @@ function AirflowStrokes() {
 
 /** Section divider drawn like a duct seam with flange marks. */
 export function DuctDivider({ tone = "light" }: { tone?: "light" | "ice" }) {
-  const fill = tone === "ice" ? "#E8F6FB" : "#FFFFFF";
   return (
     <svg aria-hidden viewBox="0 0 1200 18" preserveAspectRatio="none" className="relative block h-[18px] w-full">
-      <path d="M0 18V8h1200v10z" fill={fill} />
+      <path
+        d="M0 18V8h1200v10z"
+        className={cn(tone === "ice" ? "fill-ice dark:fill-[#0b1d33]" : "fill-white dark:fill-[#071526]")}
+      />
       <path d="M0 8h1200" stroke="#00B4D8" strokeOpacity=".45" />
       {Array.from({ length: 13 }, (_, i) => (
         <path key={i} d={`M${i * 100} 3v5`} stroke="#00B4D8" strokeOpacity=".45" />

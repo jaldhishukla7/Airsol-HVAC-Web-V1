@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { HvacIcon } from "@/components/icons/hvac-icons";
 import { Logo } from "@/components/layout/logo";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import type { NavItem } from "@/lib/nav";
 import { SITE, mailto } from "@/lib/site";
@@ -33,45 +34,47 @@ export function HeaderClient({ nav }: { nav: NavItem[] }) {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Utility bar: both phone numbers, email and markets. Collapses on scroll. */}
+      {/* Utility bar: phone numbers, email and international link. Collapses on scroll. */}
       <div
         className={cn(
-          "on-dark overflow-hidden bg-navy-900 text-[13px] text-mist transition-[max-height] duration-300",
-          scrolled ? "max-h-0" : "max-h-10",
+          "on-dark overflow-hidden bg-navy-900 text-[11px] sm:text-[12px] md:text-[13px] text-mist transition-[max-height] duration-300",
+          scrolled ? "max-h-0" : "max-h-24 sm:max-h-12 md:max-h-10",
         )}
       >
-        <div className="container-x flex h-9 items-center justify-between gap-4">
-          <ul className="flex items-center gap-5">
+        <div className="container-x flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-1.5 sm:py-1 md:py-0 md:h-9">
+          <ul className="flex flex-wrap items-center gap-x-3.5 gap-y-1 sm:gap-x-4 md:gap-5">
             {SITE.phones.map((p) => (
               <li key={p.tel}>
                 <a href={`tel:${p.tel}`} className="flex items-center gap-1.5 whitespace-nowrap hover:text-white">
-                  <Phone className="size-3.5 text-cyan" strokeWidth={1.5} aria-hidden />
-                  {p.display}
+                  <Phone className="size-3 text-cyan sm:size-3.5" strokeWidth={1.5} aria-hidden />
+                  <span>{p.display}</span>
                 </a>
               </li>
             ))}
-            <li className="hidden md:block">
-              <a href={mailto("Enquiry from website")} className="flex items-center gap-1.5 hover:text-white">
-                <Mail className="size-3.5 text-cyan" strokeWidth={1.5} aria-hidden />
-                {SITE.email}
+            <li>
+              <a href={mailto("Enquiry from website")} className="flex items-center gap-1.5 whitespace-nowrap hover:text-white">
+                <Mail className="size-3 text-cyan sm:size-3.5" strokeWidth={1.5} aria-hidden />
+                <span>{SITE.email}</span>
               </a>
             </li>
           </ul>
-          <Link href="/international" className="hidden items-center gap-1.5 hover:text-white sm:flex">
-            <Globe className="size-3.5 text-cyan" strokeWidth={1.5} aria-hidden />
-            India, UAE and international projects
+          <Link href="/international" className="flex items-center gap-1.5 whitespace-nowrap text-cyan hover:text-white">
+            <Globe className="size-3 sm:size-3.5" strokeWidth={1.5} aria-hidden />
+            <span>India, UAE and international projects</span>
           </Link>
         </div>
       </div>
     <div
       className={cn(
-        "border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 transition-[border-color,box-shadow] duration-200",
-        scrolled ? "border-line shadow-[0_6px_20px_-14px_rgb(11_37_69/0.35)]" : "border-transparent",
+        "border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 transition-[border-color,box-shadow,background-color] duration-200 dark:bg-navy-900/95 dark:supports-[backdrop-filter]:bg-navy-900/85",
+        scrolled
+          ? "border-line shadow-[0_6px_20px_-14px_rgb(11_37_69/0.35)] dark:border-line-dark dark:shadow-[0_6px_20px_-14px_rgb(0_0_0/0.6)]"
+          : "border-transparent",
       )}
     >
       <div
         className={cn(
-          "container-x flex items-center gap-6 transition-[height] duration-200",
+          "container-x flex items-center gap-4 sm:gap-6 transition-[height] duration-200",
           scrolled ? "h-16" : "h-20",
         )}
       >
@@ -94,8 +97,8 @@ export function HeaderClient({ nav }: { nav: NavItem[] }) {
                     href={item.href}
                     aria-current={pathname === item.href ? "page" : undefined}
                     className={cn(
-                      "rounded-md px-2.5 py-2 text-[15px] font-medium text-graphite transition-colors hover:text-steel xl:px-3",
-                      pathname.startsWith(item.href) && "text-steel",
+                      "rounded-md px-2.5 py-2 text-[15px] font-medium text-graphite transition-colors hover:text-steel xl:px-3 dark:text-mist dark:hover:text-white",
+                      pathname.startsWith(item.href) && "text-steel dark:text-cyan",
                     )}
                   >
                     {item.label}
@@ -107,7 +110,7 @@ export function HeaderClient({ nav }: { nav: NavItem[] }) {
         </nav>
 
         <div className="ml-auto flex items-center gap-2 lg:ml-2">
-
+          <ThemeToggle />
           <Button asChild size="sm" className="hidden sm:inline-flex">
             <Link href="/request-a-quote">Request a quote</Link>
           </Button>
@@ -181,8 +184,8 @@ function MegaMenuItem({
           onOpenChange(!open);
         }}
         className={cn(
-          "flex items-center gap-1 rounded-md px-2.5 py-2 text-[15px] font-medium text-graphite transition-colors hover:text-steel xl:px-3",
-          (open || active) && "text-steel",
+          "flex items-center gap-1 rounded-md px-2.5 py-2 text-[15px] font-medium text-graphite transition-colors hover:text-steel xl:px-3 dark:text-mist dark:hover:text-white",
+          (open || active) && "text-steel dark:text-cyan",
         )}
       >
         {item.label}
@@ -195,15 +198,15 @@ function MegaMenuItem({
       <div
         id={panelId}
         data-open={open}
-        className="mega-panel absolute inset-x-0 top-full border-t border-line bg-white shadow-[0_24px_40px_-24px_rgb(11_37_69/0.35)]"
+        className="mega-panel absolute inset-x-0 top-full border-t border-line bg-white shadow-[0_24px_40px_-24px_rgb(11_37_69/0.35)] dark:bg-navy-900 dark:border-line-dark dark:shadow-[0_24px_40px_-24px_rgb(0_0_0/0.7)]"
       >
         <div className="container-x grid grid-cols-[220px_1fr] gap-10 py-8">
-          <div className="border-r border-line pr-8">
-            <p className="font-display text-2xl font-semibold text-navy">{mega.heading}</p>
+          <div className="border-r border-line pr-8 dark:border-line-dark">
+            <p className="font-display text-2xl font-semibold text-navy dark:text-white">{mega.heading}</p>
             {mega.footer ? (
               <Link
                 href={mega.footer.href}
-                className="link-underline mt-4 inline-block text-sm font-semibold text-steel"
+                className="link-underline mt-4 inline-block text-sm font-semibold text-steel dark:text-cyan"
               >
                 {mega.footer.label}
               </Link>
@@ -214,17 +217,17 @@ function MegaMenuItem({
               <li key={leaf.href + leaf.label}>
                 <Link
                   href={leaf.href}
-                  className="group flex gap-3 rounded-md p-3 transition-colors hover:bg-ice focus-visible:bg-ice"
+                  className="group flex gap-3 rounded-md p-3 transition-colors hover:bg-ice focus-visible:bg-ice dark:hover:bg-navy-800 dark:focus-visible:bg-navy-800"
                 >
                   {leaf.icon ? (
-                    <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-md border border-line bg-white text-steel group-hover:border-steel">
+                    <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-md border border-line bg-white text-steel group-hover:border-steel dark:border-line-dark dark:bg-navy-800 dark:text-cyan dark:group-hover:border-cyan">
                       <HvacIcon name={leaf.icon} className="size-5" />
                     </span>
                   ) : null}
                   <span>
-                    <span className="block text-[15px] font-semibold text-navy">{leaf.label}</span>
+                    <span className="block text-[15px] font-semibold text-navy dark:text-white">{leaf.label}</span>
                     {leaf.description ? (
-                      <span className="mt-0.5 line-clamp-2 block text-[13px] leading-snug text-muted">
+                      <span className="mt-0.5 line-clamp-2 block text-[13px] leading-snug text-muted dark:text-mist">
                         {leaf.description}
                       </span>
                     ) : null}
@@ -253,7 +256,7 @@ function MobileMenu({ nav }: { nav: NavItem[] }) {
       <Dialog.Trigger asChild>
         <button
           type="button"
-          className="grid size-11 place-items-center rounded-md text-navy hover:bg-ice lg:hidden"
+          className="grid size-11 place-items-center rounded-md text-navy hover:bg-ice lg:hidden dark:text-white dark:hover:bg-white/10"
           aria-label="Open menu"
         >
           <Menu className="size-6" strokeWidth={1.5} />
@@ -316,8 +319,15 @@ function MobileMenu({ nav }: { nav: NavItem[] }) {
             </ul>
           </nav>
           <div className="space-y-3 border-t border-line-dark p-5">
+            <ThemeToggle variant="full" />
             <Button asChild className="w-full">
               <Link href="/request-a-quote">Request a quote</Link>
+            </Button>
+            <Button asChild variant="ghostDark" className="w-full">
+              <a href={mailto("Enquiry from website")}>
+                <Mail aria-hidden strokeWidth={1.5} />
+                {SITE.email}
+              </a>
             </Button>
             {SITE.phones.map((p) => (
               <Button key={p.tel} asChild variant="ghostDark" className="w-full">
@@ -327,6 +337,13 @@ function MobileMenu({ nav }: { nav: NavItem[] }) {
                 </a>
               </Button>
             ))}
+            <Link
+              href="/international"
+              className="flex items-center justify-center gap-2 rounded-md border border-cyan/30 bg-cyan/10 px-4 py-2.5 text-center text-sm font-medium text-cyan hover:bg-cyan/20"
+            >
+              <Globe className="size-4" strokeWidth={1.5} aria-hidden />
+              India, UAE and international projects
+            </Link>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

@@ -111,18 +111,18 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           </div>
         </div>
         <div className="container-x relative">
-        <dl className="flex flex-wrap gap-px overflow-hidden rounded-t-xl border border-b-0 border-white/10 bg-white/10">
-          {facts.map((f) => (
-            <div key={f.k} className="min-w-[45%] flex-1 bg-navy-800 px-5 py-4 sm:min-w-0">
-              <dt className="text-[13px] text-mist">{f.k}</dt>
-              <dd className="mt-1 flex items-center gap-1.5 font-semibold text-white">
-                {f.k === "Location" ? <MapPin className="size-4 text-cyan" strokeWidth={1.5} aria-hidden /> : null}
-                {f.k === "Completed" ? <Calendar className="size-4 text-cyan" strokeWidth={1.5} aria-hidden /> : null}
-                {f.v}
-              </dd>
-            </div>
-          ))}
-        </dl>
+          <dl className="flex flex-wrap gap-px overflow-hidden rounded-t-xl border border-b-0 border-white/10 bg-white/10">
+            {facts.map((f) => (
+              <div key={f.k} className="min-w-[45%] flex-1 bg-navy-800 px-5 py-4 sm:min-w-0">
+                <dt className="text-[13px] text-mist">{f.k}</dt>
+                <dd className="mt-1 flex items-center gap-1.5 font-semibold text-white">
+                  {f.k === "Location" ? <MapPin className="size-4 text-cyan" strokeWidth={1.5} aria-hidden /> : null}
+                  {f.k === "Completed" ? <Calendar className="size-4 text-cyan" strokeWidth={1.5} aria-hidden /> : null}
+                  {f.v}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
         <DuctDivider />
       </section>
@@ -210,7 +210,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         {p.images && p.images.length > 1 ? (
           <section aria-labelledby="gallery-title" className="mt-16">
             <h2 id="gallery-title" className="font-display text-4xl font-semibold">
-              Photo gallery
+              Photo Gallery
             </h2>
             <Gallery images={p.images} variant="bento" className="mt-6" />
           </section>
@@ -219,10 +219,10 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         <section aria-labelledby="more-title" className="mt-16">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <h2 id="more-title" className="font-display text-4xl font-semibold">
-              More projects
+              More Projects
             </h2>
             <Link href="/projects" className="link-underline text-[15px] font-semibold text-steel">
-              All projects
+              All Projects
             </Link>
           </div>
           <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

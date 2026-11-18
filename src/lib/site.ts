@@ -38,8 +38,8 @@ export const SITE = {
   },
   /** All public numbers. Contact names are from the previous website's contact page. */
   phones: [
-    { display: "+91 81418 48212", tel: "+918141848212", whatsapp: "918141848212", name: "Saumil Shukla" },
-    { display: "+91 79905 44540", tel: "+917990544540", whatsapp: "917990544540", name: "Swapnil Pancholi" },
+    { display: "+91 81418 48212", tel: "+918141848212", whatsapp: "918141848212" },
+    { display: "+91 79905 44540", tel: "+917990544540", whatsapp: "917990544540" },
   ],
   city: "Ahmedabad",
   locality: "Odhav",
@@ -47,23 +47,29 @@ export const SITE = {
   country: "India",
   countryCode: "IN",
 
-  /** TODO_CONFIRM: taken from the previous airsolhvac.com contact page. */
-  address: todo(
-    {
-      streetAddress: "12, Maruti Estate, Opp. Hindustan Marble, GIDC Odhav",
+  /** Confirmed address from client. */
+  address: {
+    value: {
+      streetAddress: "Road B Line 5, Plot No. 38/3, Odhav Road, Odhav Industrial Estate",
       addressLocality: "Ahmedabad",
       addressRegion: "Gujarat",
-      postalCode: "", // TODO_CONFIRM
+      postalCode: "382415",
       addressCountry: "IN",
     },
-    "Street address copied from the old website. Confirm spelling and add the PIN code.",
-  ),
+    confirmed: true,
+    note: "Confirmed address provided by client.",
+  },
 
   /** TODO_CONFIRM: the old About page says "Founded in 2019". */
   foundedYear: todo(2019, "Old About page states 2019. Confirm the year the firm started."),
 
-  /** TODO_CONFIRM: Google Maps link used on the old website. */
-  mapUrl: todo("https://maps.app.goo.gl/pK5wBCJXmsS5oNzA9", "Map pin from the old website."),
+  /** Google Maps link for confirmed address. */
+  mapUrl: {
+    value:
+      "https://www.google.com/maps/search/?api=1&query=Road+B+Line+5%2C+Plot+No.+38%2F3%2C+Odhav+Road%2C+Odhav+Industrial+Estate%2C+Ahmedabad%2C+Gujarat+382415",
+    confirmed: true,
+    note: "Google Maps query matching the confirmed address.",
+  },
 
   /** TODO_CONFIRM: hours shown on the old website. */
   hours: todo("Monday to Saturday, 9:00 AM to 6:00 PM. Sunday closed.", "Hours from the old website."),
@@ -100,14 +106,14 @@ export const LOCATIONS: Location[] = [
     label: "India",
     role: "Head office and manufacturing facility",
     addressLines: [
-      "12, Maruti Estate, Opp. Hindustan Marble",
-      "GIDC Odhav, Ahmedabad",
-      "Gujarat, India",
+      "Road B Line 5, Plot No. 38/3, Odhav Road",
+      "Odhav Industrial Estate, Ahmedabad",
+      "Gujarat, 382415",
     ],
-    // From the previous website's "Find location" map.
     mapEmbed:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.9477033887633!2d72.64408087485096!3d23.025692316212574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e87533ed6af2b%3A0xae93677830c59e51!2sAirsol%20HVAC%20industry!5e0!3m2!1sen!2sin!4v1696755166631!5m2!1sen!2sin",
-    mapUrl: "https://maps.app.goo.gl/pK5wBCJXmsS5oNzA9",
+      "https://maps.google.com/maps?q=Road+B+Line+5%2C+Plot+No.+38%2F3%2C+Odhav+Road%2C+Odhav+Industrial+Estate%2C+Ahmedabad%2C+Gujarat+382415&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    mapUrl:
+      "https://www.google.com/maps/search/?api=1&query=Road+B+Line+5%2C+Plot+No.+38%2F3%2C+Odhav+Road%2C+Odhav+Industrial+Estate%2C+Ahmedabad%2C+Gujarat+382415",
   },
   // { id: "uae", label: "UAE", role: "Regional office", addressLines: ["…"], mapEmbed: "…", mapUrl: "…" },
 ];

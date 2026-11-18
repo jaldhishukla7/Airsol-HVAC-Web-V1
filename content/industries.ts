@@ -126,7 +126,7 @@ export const INDUSTRIES: Industry[] = [
   },
   {
     slug: "manufacturing",
-    name: "Manufacturing",
+    name: "Manufacturing Industries",
     icon: "factory",
     seoTitle: "Industrial Ventilation & Dust Collection for Manufacturing | Airsol",
     metaDescription:

@@ -87,7 +87,7 @@ export const PRODUCTS: DetailPage[] = [
       { label: "AHU installation and commissioning", href: "/services/ahu-installation-commissioning" },
       { label: "Cleanroom HVAC", href: "/services/cleanroom-hvac" },
       { label: "HEPA filtration", href: "/products/hepa-filtration" },
-      { label: "Article: selecting an AHU for a pharmaceutical facility", href: "/resources/ahu-selection-pharmaceutical-facility" },
+      { label: "Article: selecting an AHU for a pharmaceutical facility", href: "/blogs/ahu-selection-pharmaceutical-facility" },
     ],
   },
   {
@@ -175,15 +175,15 @@ export const PRODUCTS: DetailPage[] = [
   },
   {
     slug: "hepa-filtration",
-    name: "HEPA Filtration and Air Filtration Systems",
-    short: "HEPA filtration",
-    icon: "filter",
+    name: "Clean Room and HEPA Filtration Systems",
+    short: "Clean Room",
+    icon: "cleanroom",
     seoTitle: "Cleanroom HVAC & HEPA Filtration Solutions | Airsol",
     metaDescription:
       "Pre-filters, fine filters, HEPA housings and terminal filter modules for pharmaceutical, healthcare and process environments.",
-    h1: "HEPA and staged air filtration for controlled environments",
+    h1: "Clean room and staged air filtration for controlled environments",
     summary:
-      "Pre-filters, fine filters and HEPA stages arranged so that each one protects the next, in AHUs, ducted housings and terminal modules.",
+      "Clean rooms, pre-filters, fine filters and HEPA stages arranged for controlled environments, in AHUs, ducted housings and terminal modules.",
     image: { src: "/images/products/filter-panel.webp", alt: "Technician holding a pleated panel air filter" },
     quoteProjectType: "cleanroom",
     sections: [
@@ -323,7 +323,7 @@ export const PRODUCTS: DetailPage[] = [
     ],
     related: [
       { label: "Industrial ventilation", href: "/services/industrial-ventilation" },
-      { label: "Article: how to select a centrifugal blower", href: "/resources/how-to-select-centrifugal-blower" },
+      { label: "Article: how to select a centrifugal blower", href: "/blogs/how-to-select-centrifugal-blower" },
       { label: "Dust collection", href: "/products/dust-collection" },
       { label: "Tool: CFM and CMH converter", href: "/tools#converter" },
     ],
@@ -475,7 +475,7 @@ export const PRODUCTS: DetailPage[] = [
       { label: "Blowers and fans", href: "/products/blowers-and-fans" },
       { label: "Industrial ventilation", href: "/services/industrial-ventilation" },
       { label: "Manufacturing", href: "/industries/manufacturing" },
-      { label: "Article: industrial ventilation, ACH and static pressure", href: "/resources/industrial-ventilation-ach-static-pressure" },
+      { label: "Article: industrial ventilation, ACH and static pressure", href: "/blogs/industrial-ventilation-ach-static-pressure" },
     ],
   },
 ];

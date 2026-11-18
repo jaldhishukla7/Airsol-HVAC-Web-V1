@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* ------------------------------------------------------------------
    Airsol design tokens
@@ -67,6 +68,9 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: 6rem;
+  }
+  html.dark {
+    color-scheme: dark;
   }
   body {
     @apply bg-paper font-sans text-graphite antialiased;
@@ -354,4 +358,141 @@
 }
 .group:hover .cover-flow {
   opacity: 0.95;
+}
+
+/* ==================================================================
+   Airsol Dark Mode Theme System
+   Unlayered high-specificity overrides guarantee correct dark surfaces
+   and prevent white-on-white text in cards and containers.
+   ================================================================== */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #071526 !important;
+  color: #cbd5e1 !important;
+}
+
+/* Dark card and container surfaces */
+html.dark .bg-white {
+  background-color: #0c1e34 !important;
+}
+
+html.dark .bg-paper {
+  background-color: #071526 !important;
+}
+
+html.dark .bg-ice {
+  background-color: #081a2e !important;
+}
+
+html.dark .bg-ice-200 {
+  background-color: #0e2744 !important;
+}
+
+html.dark .border-line {
+  border-color: #1a3656 !important;
+}
+
+html.dark .bg-line {
+  background-color: #1a3656 !important;
+}
+
+html.dark .divide-line > * + * {
+  border-color: #1a3656 !important;
+}
+
+/* Typography contrast in dark mode */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-navy {
+  color: #f8fafc !important;
+}
+
+html.dark .text-graphite {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-muted {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-steel {
+  color: #38bdf8 !important;
+}
+
+html.dark .text-steel-600 {
+  color: #60a5fa !important;
+}
+
+html.dark .text-cyan-ink {
+  color: #38bdf8 !important;
+}
+
+/* Client marquee in dark mode */
+html.dark .marquee a {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+html.dark .marquee a:hover {
+  color: #00b4d8 !important;
+}
+html.dark .marquee > div[class*="from-white"] {
+  background-image: linear-gradient(to right, #071526, transparent) !important;
+}
+html.dark .marquee > div[class*="from-white"]:last-of-type {
+  background-image: linear-gradient(to left, #071526, transparent) !important;
+}
+
+/* Forms and interactive inputs in dark mode */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #091728 !important;
+  color: #f8fafc !important;
+  border-color: #1a3656 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Mega menu dropdown and modals in dark mode */
+html.dark .mega-panel {
+  background-color: #0c1e34 !important;
+  border-color: #1a3656 !important;
+}
+
+/* Blueprint drafting grid in dark mode */
+html.dark .blueprint {
+  background-color: #071526 !important;
+  background-image:
+    linear-gradient(rgb(0 180 216 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 180 216 / 0.08) 1px, transparent 1px),
+    linear-gradient(rgb(0 180 216 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 180 216 / 0.035) 1px, transparent 1px) !important;
+}
+
+/* Prose articles in dark mode */
+html.dark .prose-airsol {
+  color: #cbd5e1 !important;
+}
+html.dark .prose-airsol :where(h1, h2, h3, h4, th) {
+  color: #f8fafc !important;
+}
+html.dark .prose-airsol :where(p, li, strong) {
+  color: #cbd5e1 !important;
+}
+html.dark .prose-airsol a {
+  color: #38bdf8 !important;
+}
+html.dark .prose-airsol code {
+  color: #38bdf8 !important;
+  background-color: #0f2744 !important;
 }

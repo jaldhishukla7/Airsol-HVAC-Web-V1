@@ -17,7 +17,13 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         crumbs={[{ label: "Projects", href: "/projects" }]}
-        title="Projects and clients"
+        title={
+          <>
+            Projects and
+            <br />
+            End-Consumer Clients
+          </>
+        }
         summary="Hospitals, hotels, resorts, restaurants, industrial plants and commercial developments. Filter by sector and open any project for details."
       />
       <section className="container-x py-14">

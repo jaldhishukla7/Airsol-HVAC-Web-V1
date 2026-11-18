@@ -66,19 +66,19 @@ export function ProjectCard({ project, headingLevel = "h3" }: { project: Project
     <Link
       href={`/projects/${project.slug}`}
       data-spotlight
-      className="spotlight group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-steel/60 hover:shadow-[var(--shadow-lift)]"
+      className="spotlight group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-steel/60 hover:shadow-[var(--shadow-lift)] dark:border-line-dark dark:bg-navy-800/90 dark:hover:border-cyan/50"
     >
       <ProjectCover project={project} className="aspect-[16/10]" />
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-[13px] font-medium text-cyan-ink">{sector.label}</p>
-        <H className="mt-1 font-display text-2xl leading-tight font-semibold text-navy">{project.client}</H>
+        <p className="text-[13px] font-medium text-cyan-ink dark:text-cyan">{sector.label}</p>
+        <H className="mt-1 font-display text-2xl leading-tight font-semibold text-navy dark:text-white">{project.client}</H>
         {project.location ? (
-          <p className="mt-1.5 flex items-center gap-1.5 text-[13px] text-muted">
+          <p className="mt-1.5 flex items-center gap-1.5 text-[13px] text-muted dark:text-mist">
             <MapPin className="size-3.5" strokeWidth={1.5} aria-hidden />
             {project.location}
           </p>
         ) : null}
-        <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-steel">
+        <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-steel dark:text-cyan">
           View project
           <ArrowRight aria-hidden strokeWidth={1.5} className="size-4 transition-transform duration-300 group-hover:translate-x-1.5" />
         </span>

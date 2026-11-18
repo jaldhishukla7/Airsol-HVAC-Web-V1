@@ -1,7 +1,7 @@
 import type { IconName } from "@/components/icons/hvac-icons";
 
 /**
- * Projects and clients.
+ * Projects and End-Consumer Clients.
  *
  * The client list comes from the "Our Specialties" section of the previous
  * airsolhvac.com website. The overview text describes each client and sector
@@ -30,9 +30,9 @@ export type Sector = {
 
 export const SECTORS: Sector[] = [
   { id: "healthcare", label: "Healthcare", icon: "pharma", industrySlug: "pharmaceutical-healthcare" },
-  { id: "hospitality", label: "Hotels, resorts and restaurants", icon: "hotel", industrySlug: "hotels-restaurants" },
-  { id: "industrial", label: "Industrial and energy", icon: "factory", industrySlug: "manufacturing" },
-  { id: "commercial", label: "Commercial and real estate", icon: "building", industrySlug: "commercial-buildings" },
+  { id: "hospitality", label: "Hotels, Resorts and Restaurants", icon: "hotel", industrySlug: "hotels-restaurants" },
+  { id: "industrial", label: "Industrial and Energy", icon: "factory", industrySlug: "manufacturing" },
+  { id: "commercial", label: "Commercial and Real Estate", icon: "building", industrySlug: "commercial-buildings" },
 ];
 
 export type Project = {

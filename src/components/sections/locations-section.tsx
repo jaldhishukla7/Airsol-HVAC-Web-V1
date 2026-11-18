@@ -31,13 +31,28 @@ export function LocationsSection({ className, headingLevel = "h2" }: { className
               </div>
               <address className="flex gap-3 text-[15px] leading-relaxed text-mist not-italic">
                 <MapPin className="mt-1 size-5 shrink-0 text-cyan" strokeWidth={1.5} aria-hidden />
-                <span>
-                  {loc.addressLines.map((l) => (
-                    <span key={l} className="block">
-                      {l}
-                    </span>
-                  ))}
-                </span>
+                {loc.mapUrl ? (
+                  <a
+                    href={loc.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group transition-colors hover:text-white"
+                  >
+                    {loc.addressLines.map((l) => (
+                      <span key={l} className="block group-hover:underline">
+                        {l}
+                      </span>
+                    ))}
+                  </a>
+                ) : (
+                  <span>
+                    {loc.addressLines.map((l) => (
+                      <span key={l} className="block">
+                        {l}
+                      </span>
+                    ))}
+                  </span>
+                )}
               </address>
               <ul className="space-y-3 text-[15px]">
                 {SITE.phones.map((p) => (
@@ -81,6 +96,18 @@ export function LocationsSection({ className, headingLevel = "h2" }: { className
                   allowFullScreen
                   className="absolute inset-0 h-full w-full border-0 grayscale-[35%] transition-[filter] duration-500 hover:grayscale-0"
                 />
+              ) : null}
+              {loc.mapUrl ? (
+                <a
+                  href={loc.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-4 right-4 z-10 flex items-center gap-2 rounded-lg bg-navy/90 px-3.5 py-2 text-xs font-semibold text-white shadow-lg backdrop-blur transition hover:bg-orange hover:text-navy"
+                >
+                  <Navigation className="size-3.5 text-cyan" strokeWidth={1.5} aria-hidden />
+                  Open in Google Maps
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
               ) : null}
             </div>
           </div>

@@ -58,25 +58,6 @@ export default function HomePage() {
     <>
       <Hero />
 
-      {/* Facts strip: only figures derived from SITE and the content files. */}
-      <section aria-label="Airsol at a glance" className="border-b border-line bg-white">
-        <dl className="container-x grid grid-cols-2 divide-line py-8 sm:grid-cols-4 sm:divide-x">
-          {[
-            { value: years, suffix: "+", label: `Years since ${SITE.foundedYear.value}` },
-            { value: PRODUCTS.length, suffix: "", label: "Product lines manufactured" },
-            { value: SERVICES.length, suffix: "", label: "Engineering and site services" },
-            { value: INDUSTRIES.length, suffix: "", label: "Industries served" },
-          ].map((s) => (
-            <div key={s.label} className="px-4 py-3 sm:px-6">
-              <dt className="text-sm text-muted">{s.label}</dt>
-              <dd className="font-display text-5xl font-semibold text-navy">
-                <Counter value={s.value} suffix={s.suffix} />
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
       <section aria-labelledby="products-title" className="container-x py-20">
         <Reveal>
           <SectionHeading
@@ -84,8 +65,8 @@ export default function HomePage() {
             title="Equipment we manufacture"
             intro="Built in our own manufacturing facility and configured for each project's airflow, pressure and filtration requirements."
             action={
-              <Link href="/products" className="link-underline text-[15px] font-semibold text-steel">
-                All products
+              <Link href="/products" className="link-underline text-[15px] font-semibold text-steel dark:text-cyan">
+                All Products
               </Link>
             }
           />
@@ -154,8 +135,8 @@ export default function HomePage() {
             id="industries-title"
             title="Industries we work in"
             action={
-              <Link href="/industries" className="link-underline text-[15px] font-semibold text-steel">
-                All industries
+              <Link href="/industries" className="link-underline text-[15px] font-semibold text-steel dark:text-cyan">
+                All Industries
               </Link>
             }
           />
@@ -206,8 +187,8 @@ export default function HomePage() {
               title="Trusted by hospitals, hotels and industry"
               intro="A selection of the clients we have worked with. Open a project to see the sector and the systems involved."
               action={
-                <Link href="/projects" className="link-underline text-[15px] font-semibold text-steel">
-                  All projects
+                <Link href="/projects" className="link-underline text-[15px] font-semibold text-steel dark:text-cyan">
+                  All Projects
                 </Link>
               }
             />
@@ -226,7 +207,7 @@ export default function HomePage() {
                 </li>
               ))}
           </ul>
-          <h3 className="mt-16 font-display text-3xl font-semibold">From our sites</h3>
+          <h3 className="mt-16 font-display text-3xl font-semibold text-navy dark:text-white">From our sites</h3>
           <Gallery images={SITE_PHOTOS} variant="bento" className="mt-6" />
         </div>
       </section>
@@ -250,9 +231,9 @@ export default function HomePage() {
               { href: "/tools#kitchen", icon: "hood" as const, t: "Kitchen exhaust estimate" },
             ].map((x) => (
               <li key={x.href}>
-                <Link href={x.href} className="hover-lift flex h-full flex-col rounded-md border border-line bg-white p-5">
-                  <HvacIcon name={x.icon} className="size-7 text-steel" />
-                  <span className="mt-4 font-display text-xl font-semibold text-navy">{x.t}</span>
+                <Link href={x.href} className="hover-lift flex h-full flex-col rounded-md border border-line bg-white p-5 transition-colors dark:border-line-dark dark:bg-navy-800/90">
+                  <HvacIcon name={x.icon} className="size-7 text-steel dark:text-cyan" />
+                  <span className="mt-4 font-display text-xl font-semibold text-navy dark:text-white">{x.t}</span>
                 </Link>
               </li>
             ))}
