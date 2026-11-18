@@ -61,7 +61,6 @@ export function LocationsSection({ className, headingLevel = "h2" }: { className
                       <Phone className="size-5 shrink-0 text-cyan" strokeWidth={1.5} aria-hidden />
                       <span>
                         <span className="block font-semibold text-white group-hover:text-cyan">{p.display}</span>
-                        <span className="block text-[13px] text-mist">{p.name}</span>
                       </span>
                     </a>
                   </li>
