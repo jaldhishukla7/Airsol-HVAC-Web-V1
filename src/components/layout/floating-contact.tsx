@@ -54,7 +54,6 @@ export function FloatingContact() {
                   </span>
                   <span>
                     <span className="block font-semibold text-navy dark:text-white">{p.display}</span>
-                    <span className="block text-[13px] text-muted dark:text-mist">{p.name}</span>
                   </span>
                 </a>
               </li>
