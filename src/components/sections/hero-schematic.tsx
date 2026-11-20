@@ -6,13 +6,62 @@ import { cn } from "@/lib/utils";
 
 /** Section columns of the AHU drawing, in SVG viewBox units (640 × 340). */
 const STAGES = [
-  { id: "fresh", label: "Fresh air", x0: 20, x1: 80, text: "Outdoor air enters through a louvre and mixes with return air in the proportion the design calls for." },
-  { id: "pre", label: "Pre-filter", x0: 80, x1: 128, text: "A coarse filter catches larger dust and protects the coil and the finer filters downstream." },
-  { id: "fine", label: "Fine filter", x0: 128, x1: 190, text: "Bag or panel filters capture finer particles before the air reaches the coil and fan." },
-  { id: "coil", label: "Coil", x0: 190, x1: 262, text: "A chilled-water, hot-water or DX coil cools, heats and dehumidifies the air. Condensate drains to the pan." },
-  { id: "fan", label: "Fan", x0: 262, x1: 440, text: "A centrifugal fan selected for the design airflow at the system's total static pressure, including loaded filters." },
-  { id: "hepa", label: "HEPA", x0: 440, x1: 500, text: "Final filtration for cleanrooms and critical areas, specified to the room classification." },
-  { id: "supply", label: "Supply", x0: 500, x1: 580, text: "Conditioned air leaves for the duct system at the design flow and pressure." },
+  {
+    id: "fresh",
+    label: "Fresh Air & Mixing Chamber",
+    telemetry: "AIR MIX: 80% RET / 20% OA • AMBIENT: 34°C",
+    x0: 20,
+    x1: 80,
+    text: "Outdoor air enters through aerodynamic weather louvres and mixes with return air in precise proportions controlled by modulating motorized dampers.",
+  },
+  {
+    id: "pre",
+    label: "Pre-Filter Stage (G4)",
+    telemetry: "MERV 8 (G4) • DELTA P: 60 Pa • ARRESTANCE: 90%",
+    x0: 80,
+    x1: 128,
+    text: "Heavy-duty pleated pre-filters capture coarse particulate matter (PM10), extending the lifespan of fine filters and cooling coils downstream.",
+  },
+  {
+    id: "fine",
+    label: "Fine Bag Filter (F7/F9)",
+    telemetry: "MERV 14 (F8) • DELTA P: 120 Pa • EU-7 STANDARD",
+    x0: 128,
+    x1: 190,
+    text: "Deep-pocket synthetic media captures sub-micron dust, smoke, and pollen before air enters thermal conditioning coils and the blower.",
+  },
+  {
+    id: "coil",
+    label: "Cooling & Dehumidification Coil",
+    telemetry: "CHILLED WATER 7°C / 12°C • 14°C OFF-COIL • STAINLESS PAN",
+    x0: 190,
+    x1: 262,
+    text: "Multi-row copper tubes with mechanically bonded aluminum fins cool and dehumidify incoming air. Condensate drains seamlessly through a sloping stainless pan.",
+  },
+  {
+    id: "fan",
+    label: "Centrifugal Impeller Blower",
+    telemetry: "DUTY: 18,500 CFM • TOTAL STATIC: 450 Pa • VFD CONTROLLED",
+    x0: 262,
+    x1: 440,
+    text: "High-efficiency backward-curved or plug fan dynamically balanced to ISO 1940 Grade G2.5, delivering uniform static pressure across the distribution duct.",
+  },
+  {
+    id: "hepa",
+    label: "HEPA Terminal Stage (H14)",
+    telemetry: "EFFICIENCY: 99.995% @ 0.3μm • ISO 14644 CLASS 5 COMPLIANT",
+    x0: 440,
+    x1: 500,
+    text: "Gel-sealed or gasketed H14 HEPA filters provide certified particulate barrier for pharmaceutical, hospital OT, and cleanroom environments.",
+  },
+  {
+    id: "supply",
+    label: "Conditioned Supply Air Outlet",
+    telemetry: "VELOCITY: 5.2 m/s • NOISE: < 55 dBA • LAMINAR DISTRIBUTION",
+    x0: 500,
+    x1: 580,
+    text: "Ultra-pure, thermally conditioned laminar airflow discharges into the ducted building distribution network with acoustic attenuation.",
+  },
 ] as const;
 
 const VB_W = 640;
@@ -21,14 +70,13 @@ const TOP = 96;
 const BOTTOM = 286;
 
 /**
- * Interactive layer over the AHU drawing: hotspots for each section, a
- * highlight that glides between them and a caption panel. After page load it
- * tours the sections automatically until the visitor picks one. Looping
- * animations pause while the hero is off-screen.
+ * Interactive layer over the AHU drawing: hotspots for each section, an
+ * aerodynamic highlight that glides between them, live telemetry metrics,
+ * and an engineered caption panel.
  */
 export function HeroSchematic({ children }: { children: React.ReactNode }) {
   const reduce = useReducedMotion();
-  const [active, setActive] = useState(4);
+  const [active, setActive] = useState(6);
   const [touring, setTouring] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -60,7 +108,7 @@ export function HeroSchematic({ children }: { children: React.ReactNode }) {
   // Auto-tour through the stages until the visitor interacts.
   useEffect(() => {
     if (!touring || reduce) return;
-    const id = window.setInterval(() => setActive((i) => (i + 1) % STAGES.length), 3200);
+    const id = window.setInterval(() => setActive((i) => (i + 1) % STAGES.length), 3400);
     return () => window.clearInterval(id);
   }, [touring, reduce]);
 
@@ -74,17 +122,19 @@ export function HeroSchematic({ children }: { children: React.ReactNode }) {
 
   return (
     <div ref={ref} data-play="false" className="hero-schematic relative mx-auto w-full max-w-[640px]">
-      <div className="relative">
+      <div className="relative rounded-xl border border-cyan/20 bg-navy-950/40 p-2 shadow-[0_0_35px_rgba(0,180,216,0.12)] backdrop-blur-sm">
         {children}
-        {/* Highlight that glides to the active section */}
+
+        {/* Aerodynamic highlight that glides to the active section */}
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute rounded-[3px] border border-cyan bg-cyan/10 shadow-[0_0_24px_rgb(0_180_216/0.35)]"
+          className="pointer-events-none absolute rounded-md border-2 border-cyan bg-cyan/15 shadow-[0_0_28px_rgba(0,229,255,0.4)]"
           initial={false}
           animate={{ left: pct(stage.x0, VB_W), width: pct(stage.x1 - stage.x0, VB_W) }}
-          transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
+          transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 280, damping: 28 }}
           style={{ top: pct(TOP, VB_H), height: pct(BOTTOM - TOP, VB_H) }}
         />
+
         {/* Hotspots */}
         <div role="group" aria-label="Sections of an air handling unit" className="absolute inset-0">
           {STAGES.map((s, i) => (
@@ -97,7 +147,7 @@ export function HeroSchematic({ children }: { children: React.ReactNode }) {
               onFocus={() => pick(i)}
               onClick={() => pick(i)}
               className={cn(
-                "absolute cursor-pointer rounded-[3px] outline-offset-0 transition-colors hover:bg-white/5",
+                "absolute cursor-pointer rounded-md outline-offset-0 transition-colors hover:bg-cyan/10 focus-visible:outline-cyan",
               )}
               style={{
                 left: pct(s.x0, VB_W),
@@ -116,8 +166,8 @@ export function HeroSchematic({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      {/* Caption for the active section */}
-      <div className="relative mx-auto mt-2 min-h-[104px] max-w-[560px] rounded-lg border border-white/15 bg-navy-800/70 p-4 backdrop-blur-sm sm:min-h-[92px]">
+      {/* Engineering Caption & Real-time Telemetry Panel */}
+      <div className="relative mx-auto mt-3.5 min-h-[120px] max-w-[640px] rounded-xl border border-cyan/25 bg-navy-900/90 p-4.5 shadow-[0_8px_24px_rgba(4,12,23,0.5)] backdrop-blur-md">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={stage.id}
@@ -127,22 +177,40 @@ export function HeroSchematic({ children }: { children: React.ReactNode }) {
             transition={{ duration: 0.22 }}
             aria-live="polite"
           >
-            <p className="flex items-center gap-2 font-display text-xl font-semibold text-white">
-              <span className="text-sm font-medium text-cyan tabular-nums">
-                {active + 1}/{STAGES.length}
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
+              <p className="flex items-center gap-2.5 font-display text-lg font-bold text-white sm:text-xl">
+                <span className="rounded bg-cyan/20 px-1.5 py-0.5 font-mono text-xs font-semibold text-cyan tabular-nums">
+                  STAGE {active + 1}/{STAGES.length}
+                </span>
+                {stage.label}
+              </p>
+              <span className="font-mono text-[11px] font-medium tracking-wide text-cyan-light">
+                {stage.telemetry}
               </span>
-              {stage.label}
-            </p>
-            <p className="mt-1 text-sm leading-relaxed text-mist">{stage.text}</p>
+            </div>
+            <p className="mt-2.5 text-sm leading-relaxed text-slate-300">{stage.text}</p>
           </motion.div>
         </AnimatePresence>
-        <div className="absolute right-3 bottom-3 flex gap-1.5" aria-hidden>
-          {STAGES.map((s, i) => (
-            <span
-              key={s.id}
-              className={cn("h-1 rounded-full transition-all duration-300", i === active ? "w-5 bg-cyan" : "w-1.5 bg-white/25")}
-            />
-          ))}
+
+        {/* Stage progress timeline dots */}
+        <div className="mt-3 flex items-center justify-between border-t border-white/5 pt-2.5" aria-hidden>
+          <span className="font-mono text-[10px] tracking-wider text-mist/70 uppercase">
+            Interactive AHU Cross-Section • Click stage to inspect
+          </span>
+          <div className="flex gap-1.5">
+            {STAGES.map((s, i) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => pick(i)}
+                aria-label={`Jump to stage ${i + 1}: ${s.label}`}
+                className={cn(
+                  "h-1.5 rounded-full transition-all duration-300",
+                  i === active ? "w-6 bg-cyan shadow-[0_0_8px_#00e5ff]" : "w-2 bg-white/25 hover:bg-white/40",
+                )}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
