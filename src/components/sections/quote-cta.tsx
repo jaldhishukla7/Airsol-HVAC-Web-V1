@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import { ArrowRight, FileText, Phone } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
@@ -11,22 +11,43 @@ export function QuoteCta({
   body?: string;
 }) {
   return (
-    <section className="on-dark blueprint-dark text-white">
-      <div className="container-x flex flex-col gap-8 py-14 lg:flex-row lg:items-center lg:justify-between">
-        <div>
-          <h2 className="max-w-[30ch] font-display text-4xl leading-tight font-semibold text-white">{title}</h2>
-          <p className="mt-3 max-w-[60ch] text-[16px] text-mist">{body}</p>
-        </div>
-        <div className="flex flex-wrap gap-3">
-          <Button asChild size="lg">
-            <Link href="/request-a-quote">Request a quote</Link>
-          </Button>
-          <Button asChild size="lg" variant="ghostDark">
-            <a href={`tel:${SITE.phone.tel}`}>
-              <Phone aria-hidden strokeWidth={1.5} />
-              {SITE.phone.display}
-            </a>
-          </Button>
+    <section className="relative overflow-hidden border-t border-cyan/20 bg-gradient-to-b from-[#061224] via-[#091C36] to-[#040D1A] py-16 text-white sm:py-20">
+      {/* Ambient background volumetric glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 right-1/4 h-72 w-96 rounded-full bg-cyan/15 blur-[100px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 left-1/4 h-72 w-96 rounded-full bg-steel/25 blur-[100px]"
+      />
+
+      <div className="container-x relative z-10">
+        <div className="relative overflow-hidden rounded-2xl border border-cyan/35 bg-navy-950/80 p-8 shadow-[0_16px_50px_rgba(0,180,216,0.15)] backdrop-blur-xl sm:p-12 lg:flex lg:items-center lg:justify-between lg:gap-12">
+          {/* Subtle blueprint line accent */}
+          <div aria-hidden className="blueprint-lines pointer-events-none absolute inset-0 opacity-30" />
+
+          <div className="relative z-10 max-w-2xl">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan/40 bg-cyan/10 px-3.5 py-1 font-mono text-xs font-semibold tracking-wider text-cyan-light uppercase">
+              <FileText className="size-3.5 text-cyan" />
+              <span>RAPID ENGINEERING ESTIMATE &bull; 24-HOUR RESPONSE</span>
+            </div>
+            <h2 className="font-display text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.6rem]">
+              {title}
+            </h2>
+            <p className="mt-3.5 text-base leading-relaxed text-slate-300 sm:text-lg">
+              {body}
+            </p>
+          </div>
+
+          <div className="relative z-10 mt-8 flex flex-wrap items-center gap-4 lg:mt-0 lg:shrink-0">
+            <Button asChild size="lg" className="font-semibold shadow-[0_0_24px_rgba(247,127,0,0.4)]">
+              <Link href="/request-a-quote" className="flex items-center gap-2">
+                <span>Request a quote</span>
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>

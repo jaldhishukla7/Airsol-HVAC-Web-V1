@@ -717,3 +717,10 @@ html.dark .prose-airsol code {
   color: #38d3f5 !important;
   background-color: #0e2744 !important;
 }
+
+/* Explicitly disable text-decoration on footer links */
+footer a,
+footer a:hover,
+footer a:focus {
+  text-decoration: none !important;
+}

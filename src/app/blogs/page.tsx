@@ -9,7 +9,7 @@ export const metadata = pageMetadata({
   title: "HVAC Engineering Resources & Articles | Airsol",
   description:
     "Practical HVAC engineering articles: AHU selection for pharma, kitchen exhaust CFM, ventilation ACH and static pressure, and centrifugal blower selection.",
-  path: "/resources",
+  path: "/blogs",
 });
 
 const dateFmt = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "long", year: "numeric" });
@@ -26,7 +26,7 @@ export default function ResourcesPage() {
         <Stagger className="grid gap-4 md:grid-cols-2">
           {ARTICLES.map((a) => (
             <StaggerItem key={a.slug}>
-              <Link href={`/resources/${a.slug}`} className="hover-lift group flex h-full flex-col rounded-md border border-line bg-white p-6">
+              <Link href={`/blogs/${a.slug}`} className="hover-lift group flex h-full flex-col rounded-md border border-line bg-white p-6">
                 <p className="text-[13px] text-cyan-ink">{a.topic}</p>
                 <h2 className="mt-2 font-display text-[1.75rem] leading-tight font-semibold group-hover:text-steel">
                   {a.title}

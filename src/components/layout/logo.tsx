@@ -4,25 +4,52 @@ import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
- * Uses the existing Airsol logo (from the previous website).
- * TODO_CONFIRM: supply an SVG or transparent PNG logo for sharper rendering on dark backgrounds.
+ * Airsol Logo with transparent background.
+ * Automatically adapts between light and dark modes:
+ * - Light surfaces: Original graphite "Air" + red "SOL" on transparent background.
+ * - Dark surfaces: Crisp white "Air" + red "SOL" on transparent background.
  */
-export function Logo({ className, plate = false }: { className?: string; plate?: boolean }) {
+export function Logo({
+  className,
+  tone = "auto",
+}: {
+  className?: string;
+  tone?: "auto" | "light" | "dark";
+  /** @deprecated Background plates are removed so the logo is always transparent */
+  plate?: boolean;
+}) {
+  const isAuto = tone === "auto";
+  const isDark = tone === "dark";
+  const isLight = tone === "light";
+
   return (
     <Link
       href="/"
       aria-label={`${SITE.name} home`}
-      className={cn("inline-flex shrink-0 items-center transition-all", plate && "rounded-md bg-white px-3 py-2")}
+      className="inline-flex shrink-0 items-center transition-opacity hover:opacity-90"
     >
-      <Image
-        src="/images/airsol-logo.webp"
-        alt={`${SITE.name} logo`}
-        width={809}
-        height={308}
-        priority
-        sizes="140px"
-        className={cn("h-10 w-auto", className)}
-      />
+      {(isAuto || isLight) && (
+        <Image
+          src="/images/airsol-logo.webp"
+          alt={`${SITE.name} logo`}
+          width={809}
+          height={300}
+          priority
+          sizes="140px"
+          className={cn("h-10 w-auto object-contain", isAuto && "dark:hidden", className)}
+        />
+      )}
+      {(isAuto || isDark) && (
+        <Image
+          src="/images/airsol-logo-dark.webp"
+          alt={`${SITE.name} logo`}
+          width={809}
+          height={300}
+          priority
+          sizes="140px"
+          className={cn("h-10 w-auto object-contain", isAuto && "hidden dark:block", className)}
+        />
+      )}
     </Link>
   );
 }
